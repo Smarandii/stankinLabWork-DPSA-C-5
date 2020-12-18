@@ -136,6 +136,7 @@ void shell_sort(int unsorted_array[10])
 	
 	for (step = size / 2; step > 0; step /= 2) 
 	{
+		// 10 20 9 64 44 0 1 1 2 2
 		printf("\n=====");
 		printf("\nStep: %d\n", step);
 		print_an_array(unsorted_array, false);
@@ -156,11 +157,35 @@ void shell_sort(int unsorted_array[10])
 	insertion_sort(unsorted_array);
 }
 
+void bubble_sort(int unsorted_array[10])
+{
+    int i=0, pos=0, n = 10, res, j, k, id = 0;
+	int sorted_length;
+	bool flag;
+
+    for (i = 0; i < n; i++)
+    {
+        flag=true;        
+        for (j = n-1; j>id ; j--)
+        {
+            if (unsorted_array[j-1] > unsorted_array[j])
+            {
+                flag = false;
+                swap(unsorted_array[j-1], unsorted_array[j]); 
+                pos = j - 1;
+            }            
+        } 
+        id = pos;
+        if (flag)
+            break;
+		print_an_array(unsorted_array, i + 1);
+    }
+}
 
 
 void main() {
 	int unsorted_array[10] = { 10, 20, 9, 64, 44, 0, 1, 1, 2, 2 };
-	printf("PRESS 1 FOR INSERTION SORT\nPRESS 2 FOR CHOICE SORT:\nPRESS 3 FOR SHELL SORT:");
+	printf("PRESS 1 FOR INSERTION SORT\nPRESS 2 FOR CHOICE SORT:\nPRESS 3 FOR SHELL SORT:\nPRESS 4 FOR BUBBLE SORT:");
 	int menu;
 	scanf("%d", &menu);
 
@@ -181,6 +206,13 @@ void main() {
 		printf("\n\nSHELL SORT:\n");
 		print_an_array(unsorted_array, false);
 		shell_sort(unsorted_array);
+	}
+
+	if (menu == 4)
+	{
+		printf("\n\nBUBBLE SORT:\n");
+		print_an_array(unsorted_array, false);
+		bubble_sort(unsorted_array);
 		print_an_array(unsorted_array);
 	}
 }
